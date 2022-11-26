@@ -54,5 +54,20 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-# devise
+# devise 管理者/顧客ログイン機能
 gem 'devise'
+# enum スタータス管理
+gem 'enum_help'
+# kaminari  ページネーション
+gem 'kaminari','~> 1.2.1'
+# データを環境変数で制御
+gem 'dotenv-rails'
+# rspec テスト用
+gem 'rspec-rails'
+# rubocop コードチェック
+gem 'rubocop', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-minitest', require: false
+gem 'rubocop-packaging', require: false
+gem 'rubocop-rspec'
