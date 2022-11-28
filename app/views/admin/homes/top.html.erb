@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+</svg>
+
+<div class="alert alert-success d-flex align-items-center" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24"><use xlink:href="#check-circle-fill"/></svg>
+  <div>
+     <%= flash[:notice] %>
+  </div>
+</div>
+
+<div class="container">
+ <div class="row">
+  <div class="col-12">
+   <br>
+　 <h3>注文履歴一覧</h3>
+   <table class='table'>
+    <thead class='thead-dark'>
+      <tr class="table-active">
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+      </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
+        <td>
+            <%= order.customer.last_name %>
+            <%= order.customer.first_name %>
+        </td>
+        <td><%= order.order_details.where(order_id: order.id).sum(:quantity) %></td>
+        <td><%= order.order_status_i18n %></td>
+      </tr>
+      <% end %>
+    </tbody>
+   </table>
+    <div class="col-md-5 mx-auto"><%= paginate @orders %></div>
+  </div>
+ </div>
+</div>

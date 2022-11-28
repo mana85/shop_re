@@ -16,6 +16,14 @@
             <%= link_to "ログイン", "/", class:'nav-link text-white' %>
           </li>
         </ul>
+        <!--一旦判定用-->
+        <% if customer_signed_in? %>
+        カスタマーログイン中
+        <% elsif admin_signed_in? %>
+        アドミンログイン中
+        <% else %>
+        ゲストアクセス中
+        <% end %>
       </div>
 
     </div>
